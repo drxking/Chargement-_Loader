@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+        .kya {
+            will-change: transform;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="flex items-center justify-center h-screen w-full bg-white text-black">
+
+        <h1 class="text-3xl uppercase font-[900] items-end justify-center flex">cHARGEMENT</h1>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let h1 = document.querySelector("h1")
+        let clutter = ""
+        let text = h1.textContent.split("");
+        text.forEach((h1s) => {
+            clutter += `<span class="kya inline-block w-[22px] h-[0px] flex items-end justify-center">${h1s}</span>`
+        })
+        gsap.ticker.fps(100);
+        h1.innerHTML = clutter;
+        let tl = gsap.timeline({
+            repeat: -1,
+            yoyo: true,
+            repeatDelay: 0.4
+        })
+        tl.to(".kya", {
+            fontWeight: `300`,
+            scaleY: 0.5,
+            stagger: 0.08,
+            width: 30,
+            ease: "power2.inOut"
+        }, "a")
+        tl.to(".kya", {
+            fontWeight: `900`,
+            scaleY: 1,
+            stagger: 0.08,
+            width: 22,
+            delay: 0.5,
+            ease: "power2.inOut"
+        }, "a")
+
+        console.log(clutter)
+
+    </script>
+</body>
+
+</html>
